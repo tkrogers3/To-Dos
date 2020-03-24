@@ -36,3 +36,17 @@
     transform: rotate(360deg);
   }
 }
+
+body{
+  
+
+
+  background-size:cover ;
+    background-image:url("./coark.jpg");
+  
+  }
+
+  .main{
+
+    background-color: #fded63;
+    }
