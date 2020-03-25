@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import Title from './Title';
+import Clear from './Clear';
+import CheckAll from './CheckAll';
 
 
 
@@ -14,38 +16,38 @@ class TodoApp extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  
+
 
 
   }
 
-  componentDidMount(){ // newList - local storage stores new item
+  componentDidMount() { // newList - local storage stores new item
     //get the items from Local Storage- if items are not null and not undefined, JSON.parse
     //then pass the data to the new list.
     //If there is no data, assign an empty array.
     //setState items to the new list
     //Was this an issue due to this.localStorage instead of window.localStorage? Array is clear and no issues.
-     let newList= JSON.parse(window.localStorage.getItem('lsList')) || []; 
-    
-     this.setState(
-    {
-    items: newList //Original items array is now newList
-      }
-      );
-      
-  console.log("the component did mount")
-  
-    }
-  
-    componentDidUpdate(){  //take new items and stringify them to be stored in new array
-  
-      window.localStorage.setItem('lsList', JSON.stringify(this.state.items));
-  
-      console.log("the component did update")
-    }
-  
+    let newList = JSON.parse(window.localStorage.getItem('lsList')) || [];
 
-  render() { 
+    this.setState(
+      {
+        items: newList //Original items array is now newList
+      }
+    );
+
+    console.log("the component did mount")
+
+  }
+
+  componentDidUpdate() {  //take new items and stringify them to be stored in new array
+
+    window.localStorage.setItem('lsList', JSON.stringify(this.state.items));
+
+    console.log("the component did update")
+  }
+
+
+  render() {
     return (
       <div>
 
@@ -54,8 +56,9 @@ class TodoApp extends React.Component {
             <div className="container mt-5">
               <div className="container main mx-auto p-5">
                 <Title />
-              
-              <TodoList items={this.state.items} />
+                <Clear parentFunction={this.clear.bind(this)} />
+                <CheckAll />
+                <TodoList items={this.state.items} />
                 <form onSubmit={this.handleSubmit}>
                   <input className="input-group mb-3"
                     type="text"
@@ -64,7 +67,7 @@ class TodoApp extends React.Component {
                     placeholder="Enter a new item"
 
                   />
-                  
+
 
                   <div className="input-group-append mx-auto justify-content-center">
                     <button className="bg-secondary text-white m-1 justify-content-left">
@@ -72,12 +75,12 @@ class TodoApp extends React.Component {
                     </button>
                     <div></div>
                     <button type="button" className="btn btn-primary m-1">To-Do's</button>
-                <button type="button" className="btn btn-secondary m-1">All Items</button>
-                <button type="button" className="btn btn-success m-1">Completed</button>
+                    <button type="button" className="btn btn-secondary m-1">All Items</button>
+                    <button type="button" className="btn btn-success m-1">Completed</button>
 
                   </div>
                 </form>
-                
+
               </div>
             </div>
           </div>
@@ -106,10 +109,20 @@ class TodoApp extends React.Component {
       items: state.items.concat(newItem),
       text: ''
     }
-    )),()=> console.log("This", this.state)
+    )), () => console.log("This", this.state)
     )
-    
+
   }
+
+  clear() {
+    this.setState({
+      items: []
+    });
+
+
+  }
+
+
 }
 // Clear All Button
 
@@ -124,16 +137,25 @@ class TodoList extends React.Component {
   render() {
     return (
       <div>
-      <ul>
-        {this.props.items.map(item => (
-          <li key={item.id}>{item.text}  </li>
+       
+          {this.props.items.map(item => (
+          
 
-
-        ))}
-
-      </ul>
-     
+            <div  key={item.id} class="input-group mb-3">
+  <div class="input-group-prepend">
+    <div class="input-group-text">
+      <input type="checkbox" aria-label="Checkbox for following text input" />
+    </div>
+  </div>
+  <input type="text" value={item.text} disabled class="form-control" aria-label="Text input with checkbox" />
 </div>
+
+
+          ))}
+</div>
+      
+
+     
     );
   }
 
