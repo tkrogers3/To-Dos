@@ -50,3 +50,10 @@ body{
 
     background-color: #fded63;
     }
+
+    #disabled {
+      background-color:white;
+    }
+
+    #checking{ background-color:green;
+    }
