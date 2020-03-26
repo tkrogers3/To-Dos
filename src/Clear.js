@@ -9,7 +9,7 @@ constructor(props) {
 }
 
 handleClick(e){
-    this.props.parentFunction();
+    this.props.parentFunction()
 }
 
 render () {
@@ -23,4 +23,4 @@ render () {
 }
 }
 
-export default Clear
+export default Clear 
