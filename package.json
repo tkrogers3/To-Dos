@@ -1,5 +1,7 @@
 {
-  "homepage": "https://tkrogers3.github.io/To-Dos/",
+
+
+ "homepage": "https://tkrogers3.github.io/To-Dos/",
   "name": "todosandbox",
   "version": "0.1.0",
   "private": true,
@@ -14,15 +16,17 @@
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+     "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  
   "eslintConfig": {
     "extends": "react-app"
   },
+ 
   "browserslist": {
     "production": [
       ">0.2%",
